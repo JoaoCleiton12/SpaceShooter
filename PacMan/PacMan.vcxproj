@@ -246,6 +246,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Spaceship.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Home.cpp" />
@@ -267,6 +268,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Spaceship.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Home.h" />

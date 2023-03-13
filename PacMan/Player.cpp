@@ -12,13 +12,19 @@
 #include "Space.h"
 #include "Player.h"
 #include "Pivot.h"
+#include "Missile.h"
+#include "Home.h"
+#include "List"
+#include "Engine.h"
+#include "Level1.h"
+#include "Level2.h"
 
 // ---------------------------------------------------------------------------------
 
 Player::Player()
 {
     sprite = new Sprite("Resources/Player.png");
-
+    missile = new Image("Resources/Missile.png");
     // imagem do pacman é 48x48 (com borda transparente de 4 pixels)
     BBox(new Rect(-20, -20, 20, 20));
     MoveTo(430.0f, 680.0f);
@@ -30,6 +36,7 @@ Player::Player()
 Player::~Player()
 {
     delete sprite;
+    delete missile;
 }
 
 // ---------------------------------------------------------------------------------
@@ -363,6 +370,7 @@ void Player::PivotCollision(Object * obj)
 
 void Player::Update()
 {
+
     if (window->KeyDown(VK_LEFT))
     {
         nextState = LEFT;
