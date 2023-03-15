@@ -29,7 +29,7 @@ int APIENTRY WinMain(_In_ HINSTANCE hInstance,
     engine->window->Mode(WINDOWED);
     engine->window->Size(960, 720);
     engine->window->Color(25, 25, 25);
-    engine->window->Title("PacMan");
+    engine->window->Title("SpaceShooter");
     engine->window->Icon(IDI_ICON);
 
     // configura dispositivo gráfico
