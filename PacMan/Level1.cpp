@@ -22,6 +22,8 @@ using std::string;
 
 // ------------------------------------------------------------------------------
 
+Scene* Level1::scene = nullptr;
+
 void Level1::Init()
 {
     // cria gerenciador de cena

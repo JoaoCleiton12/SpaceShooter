@@ -371,6 +371,15 @@ void Player::PivotCollision(Object * obj)
 void Player::Update()
 {
 
+    //Disparar Missel
+
+    if (window->KeyPress(VK_SPACE)) {
+        Missile* m = new Missile(missile);
+        m->MoveTo(x, y - sprite->Height() / 2.0f, Layer::UPPER);
+        Level1::scene->Add(m, MOVING);
+
+    }
+
     if (window->KeyDown(VK_LEFT))
     {
         nextState = LEFT;
