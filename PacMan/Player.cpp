@@ -24,7 +24,7 @@
 Player::Player()
 {
     sprite = new Sprite("Resources/Player.png");
-    missile = new Image("Resources/Missile.png");
+    missile = new Image("Resources/Missile.new.png");
     // imagem do pacman é 48x48 (com borda transparente de 4 pixels)
     BBox(new Rect(-20, -20, 20, 20));
     MoveTo(430.0f, 680.0f);
