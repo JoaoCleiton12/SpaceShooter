@@ -17,6 +17,10 @@
 #include "Pivot.h"
 #include <string>
 #include <fstream>
+#include "Spaceship.h"
+#include "GameOver.h"
+
+
 using std::ifstream;
 using std::string;
 
@@ -24,8 +28,16 @@ using std::string;
 
 Scene* Level1::scene = nullptr;
 
+float line1 = 62.0f;
+float line2 = 92.0f;
+float line3 = 122.0f;
+float line4 = 152.0f;
+float line5 = 182.0f;
+
 void Level1::Init()
 {
+    
+
     // cria gerenciador de cena
     scene = new Scene();
 
@@ -40,6 +52,24 @@ void Level1::Init()
     Pivot * pivot;
     bool left, right, up, down;
     float posX, posY;
+    //-----------------------------------------------
+    tile1 = new Image("Resources/Meteoro.png");
+
+    // posição dos meteoros
+    Spaceship* meteoro;
+    meteoro = new Spaceship(tile1);
+    meteoro->MoveTo(window->CenterX() - 320.0f, line1);
+    scene->Add(meteoro, MOVING);
+
+    meteoro = new Spaceship(tile1);
+    meteoro->MoveTo(window->CenterX() - 240.0f, line1);
+    scene->Add(meteoro, MOVING);
+
+    meteoro = new Spaceship(tile1);
+    meteoro->MoveTo(window->CenterX() - 160.0f, line1);
+    scene->Add(meteoro, MOVING);
+
+    //--------------------------------------------------
 
     // cria pivôs a partir do arquivo
     ifstream fin;
@@ -73,12 +103,32 @@ void Level1::Finalize()
 {
     delete backg;
     delete scene;
+    delete tile1;
 }
 
 // ------------------------------------------------------------------------------
 
 void Level1::Update()
 {
+    //colocar alguma condição para quando passar um determinado tempo
+    // nascer mais meteoros na tela
+    /*
+    if () {
+        Spaceship* meteoro;
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - 320.0f, line1);
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - 240.0f, line1);
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - 160.0f, line1);
+        scene->Add(meteoro, MOVING);
+    }
+    */
+
     // habilita/desabilita bounding box
     if (window->KeyPress('B'))
     {

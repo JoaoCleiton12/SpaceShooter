@@ -32,7 +32,7 @@ public:
     float velX = 0;                     // velocidade horizontal
     float velY = 0;                     // velocidade vertical
 
-    Spaceship(Player * p);                  // construtor
+    Spaceship(Image * p);                  // construtor
     ~Spaceship();                           // destrutor
 
     void Update();                      // atualização do objeto

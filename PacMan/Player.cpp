@@ -18,8 +18,10 @@
 #include "Engine.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "GameOver.h"
 
 // ---------------------------------------------------------------------------------
+
 
 Player::Player()
 {
@@ -90,6 +92,11 @@ void Player::OnCollision(Object * obj)
 {
     if (obj->Type() == PIVOT)
         PivotCollision(obj);
+
+    if (obj->Type() == INIMIGO)
+    {
+        Engine::Pause();
+    }
 }
 
 // ---------------------------------------------------------------------------------
@@ -375,9 +382,7 @@ void Player::PivotCollision(Object * obj)
 
 void Player::Update()
 {
-
     //Disparar Missel
-
     if (window->KeyPress(VK_SPACE)) {
         Missile* missel = new Missile();
         missel->MoveTo(x, y - sprite->Height() / 2.0f, Layer::UPPER);

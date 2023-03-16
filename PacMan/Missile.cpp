@@ -26,7 +26,7 @@ void Missile::OnCollision(Object* obj)
 {
 	// MISSEL colide com bloco
 	if (obj->Type() == INIMIGO)
-		Level1::scene->Delete(obj, STATIC);
+		Level1::scene->Delete(obj, MOVING);
 
 	// experimente deixar o bloco cair em vez de removê-lo da cena
 	//((Block*) obj)->velY = 200.0f;

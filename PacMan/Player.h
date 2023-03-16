@@ -38,6 +38,7 @@ private:
 public:
     uint currState = STOPED;            // estado atual do jogador
     uint nextState = STOPED;            // próximo estado do jogador
+    bool EstadoGame;
 
     Player();                           // construtor
     ~Player();                          // destrutor
