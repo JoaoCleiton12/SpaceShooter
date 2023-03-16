@@ -23,7 +23,7 @@
 // Constantes Globais
 
 // estados possíveis para o jogador
-enum PLAYERSTATE {STOPED, UP, DOWN, LEFT, RIGHT};    
+enum PLAYERSTATE {STOPED, UP, DOWN, LEFT, RIGHT, PLAYING};    
 
 // ---------------------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ class Player : public Object
 {
 private:
     Sprite * sprite = nullptr;          // sprite do player
-    Image* missile;                     // imagem do míssil
+    //Image* missile;                     // imagem do míssil
     float velX = 0;                     // velocidade horizontal do player
     float velY = 0;                     // velocidade vertical do player
 

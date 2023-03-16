@@ -24,10 +24,14 @@
 Player::Player()
 {
     sprite = new Sprite("Resources/Player.png");
-    missile = new Image("Resources/Missile.new.png");
+    //missile = new Image("Resources/Missile.new.png");
     // imagem do pacman é 48x48 (com borda transparente de 4 pixels)
     BBox(new Rect(-20, -20, 20, 20));
+    
+    //move o player na tela
     MoveTo(430.0f, 680.0f);
+    
+    // tipo do objeto
     type = PLAYER;
 
 }
@@ -37,7 +41,7 @@ Player::Player()
 Player::~Player()
 {
     delete sprite;
-    delete missile;
+    //delete missile;
 }
 
 // ---------------------------------------------------------------------------------
@@ -375,9 +379,9 @@ void Player::Update()
     //Disparar Missel
 
     if (window->KeyPress(VK_SPACE)) {
-        Missile* m = new Missile(missile);
-        m->MoveTo(x, y - sprite->Height() / 2.0f, Layer::UPPER);
-        Level1::scene->Add(m, MOVING);
+        Missile* missel = new Missile();
+        missel->MoveTo(x, y - sprite->Height() / 2.0f, Layer::UPPER);
+        Level1::scene->Add(missel, MOVING);
 
     }
 

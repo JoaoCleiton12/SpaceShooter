@@ -19,7 +19,9 @@ enum PacManObjects
     PLAYER,
     SPACESHIP,
     SHOT,
-    PIVOT
+    PIVOT,
+    MISSEL,
+    INIMIGO
 };
 
 // ------------------------------------------------------------------------------
