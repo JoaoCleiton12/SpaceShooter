@@ -382,7 +382,7 @@ void Player::PivotCollision(Object * obj)
 
 void Player::Update()
 {
-    //Disparar Missel
+    ////Disparar Missel
     if (window->KeyPress(VK_SPACE)) {
         Missile* missel = new Missile();
         missel->MoveTo(x, y - sprite->Height() / 2.0f, Layer::UPPER);

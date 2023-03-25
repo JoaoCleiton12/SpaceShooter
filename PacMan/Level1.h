@@ -18,16 +18,25 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "Scene.h"
+#include "Timer.h"
 
 // ------------------------------------------------------------------------------
 
 class Level1 : public Game
 {
-private:
+public:
     Sprite * backg = nullptr;       // background
     bool viewBBox = false;          // habilita visualização da bounding box
     Image* tile1 = nullptr;
 
+    Timer roundTime;                // contador do game
+    float tempo1 = 2.0f;
+    Timer roundTime2;
+    float tempo2 = 5.0f;
+    Timer roundTime3;
+    float tempo3 = 8.0f;
+    Timer roundTime4;
+    float tempo4 = 15.0f;
 
 public:
     static Scene* scene;         // gerenciador de cena

@@ -17,6 +17,7 @@ Missile::Missile() {
 
 	type = MISSEL;
 }
+	int cont = 0;
 
 Missile::~Missile() {
 	delete sprite;
@@ -25,8 +26,10 @@ Missile::~Missile() {
 void Missile::OnCollision(Object* obj)
 {
 	// MISSEL colide com bloco
-	if (obj->Type() == INIMIGO)
+	if (obj->Type() == INIMIGO) {
 		Level1::scene->Delete(obj, MOVING);
+		cont++;
+	}
 
 	// experimente deixar o bloco cair em vez de removê-lo da cena
 	//((Block*) obj)->velY = 200.0f;

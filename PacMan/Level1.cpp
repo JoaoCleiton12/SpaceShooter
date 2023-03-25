@@ -19,10 +19,17 @@
 #include <fstream>
 #include "Spaceship.h"
 #include "GameOver.h"
-
+#include <chrono>
+#include <thread>
+#include <iostream>
+#include <Windows.h>
+#include "Missile.h"
+#include <random>
+using namespace std::this_thread;
 
 using std::ifstream;
 using std::string;
+using namespace std;
 
 // ------------------------------------------------------------------------------
 
@@ -33,6 +40,13 @@ float line2 = 92.0f;
 float line3 = 122.0f;
 float line4 = 152.0f;
 float line5 = 182.0f;
+
+
+// define um número pseudoaleatório que será a posX do meteoro na tela
+random_device rd;
+mt19937 mt(rd());
+uniform_int_distribution<> dis(0, 450);
+
 
 void Level1::Init()
 {
@@ -53,22 +67,16 @@ void Level1::Init()
     bool left, right, up, down;
     float posX, posY;
     //-----------------------------------------------
-    tile1 = new Image("Resources/Meteoro.png");
 
     // posição dos meteoros
+    tile1 = new Image("Resources/Meteoro.png");
+
     Spaceship* meteoro;
     meteoro = new Spaceship(tile1);
-    meteoro->MoveTo(window->CenterX() - 320.0f, line1);
+    meteoro->MoveTo(window->CenterX() - dis(mt), line1);
     scene->Add(meteoro, MOVING);
 
-    meteoro = new Spaceship(tile1);
-    meteoro->MoveTo(window->CenterX() - 240.0f, line1);
-    scene->Add(meteoro, MOVING);
-
-    meteoro = new Spaceship(tile1);
-    meteoro->MoveTo(window->CenterX() - 160.0f, line1);
-    scene->Add(meteoro, MOVING);
-
+   
     //--------------------------------------------------
 
     // cria pivôs a partir do arquivo
@@ -95,6 +103,12 @@ void Level1::Init()
         fin >> left;
     }
     fin.close();
+
+    roundTime.Start();
+    roundTime2.Start();
+    roundTime3.Start();
+    roundTime4.Start();
+
 }
 
 // ------------------------------------------------------------------------------
@@ -110,24 +124,103 @@ void Level1::Finalize()
 
 void Level1::Update()
 {
-    //colocar alguma condição para quando passar um determinado tempo
-    // nascer mais meteoros na tela
-    /*
-    if () {
+
+    
+    // condição para nascer 3 meteoros a cada 2 segundos
+    if (roundTime.Elapsed(tempo1)) {
+
         Spaceship* meteoro;
         meteoro = new Spaceship(tile1);
-        meteoro->MoveTo(window->CenterX() - 320.0f, line1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
         scene->Add(meteoro, MOVING);
 
         meteoro = new Spaceship(tile1);
-        meteoro->MoveTo(window->CenterX() - 240.0f, line1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 50;
         scene->Add(meteoro, MOVING);
 
         meteoro = new Spaceship(tile1);
-        meteoro->MoveTo(window->CenterX() - 160.0f, line1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 150;
         scene->Add(meteoro, MOVING);
+
+        roundTime.Reset();
     }
-    */
+
+    // condição para nascer +4 meteoros a cada 5 segundos
+    if (roundTime2.Elapsed(tempo2)) {
+        Spaceship* meteoro;
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+
+        roundTime2.Reset();
+
+    }
+
+    //condição para nascer +5 meteoros a cada 8 segundos
+    if (roundTime3.Elapsed(tempo3)) {
+        Spaceship* meteoro;
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+
+        roundTime3.Reset();
+    }
+
+    //condição para nascer +6 meteoros a cada 15 segundos
+    if (roundTime4.Elapsed(tempo4)) {
+        Spaceship* meteoro;
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() + dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+        meteoro = new Spaceship(tile1);
+        meteoro->MoveTo(window->CenterX() - dis(mt), line1);
+        meteoro->velY = 200;
+        scene->Add(meteoro, MOVING);
+
+
+        roundTime4.Reset();
+    }
+
+
+
 
     // habilita/desabilita bounding box
     if (window->KeyPress('B'))
@@ -139,11 +232,6 @@ void Level1::Update()
     {
         // volta para a tela de abertura
         Engine::Next<Home>();
-    }
-    else if (window->KeyPress('N'))
-    {
-        // passa manualmente para o próximo nível
-        Engine::Next<Level2>();
     }
     else
     {
@@ -165,5 +253,7 @@ void Level1::Draw()
     if (viewBBox)
         scene->DrawBBox();
 }
+
+
 
 // ------------------------------------------------------------------------------
