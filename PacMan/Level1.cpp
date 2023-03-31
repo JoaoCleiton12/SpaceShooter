@@ -25,6 +25,7 @@
 #include <Windows.h>
 #include "Missile.h"
 #include <random>
+#include "GameCompleted.h"
 using namespace std::this_thread;
 
 using std::ifstream;
@@ -109,6 +110,8 @@ void Level1::Init()
     roundTime3.Start();
     roundTime4.Start();
 
+
+    roundTimeGamer.Start();
 }
 
 // ------------------------------------------------------------------------------
@@ -233,8 +236,10 @@ void Level1::Update()
         // volta para a tela de abertura
         Engine::Next<Home>();
     }
-    else
-    {
+    else if (roundTimeGamer.Elapsed(tempoGame)) {
+        Sleep(1000);
+        Engine::Next<GameCompleted>();
+    } else {
         // atualiza cena
         scene->Update();
         scene->CollisionDetection();

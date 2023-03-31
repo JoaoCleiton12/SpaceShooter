@@ -11,28 +11,28 @@
 
 #include "Engine.h"
 #include "Home.h"
-#include "GameOver.h"
+#include "GameCompleted.h"
 #include "Sprite.h"
 #include "Scene.h"
 #include "Level1.h"
 
 // ------------------------------------------------------------------------------
 
-void GameOver::Init()
+void GameCompleted::Init()
 {
-    backg = new Sprite("Resources/GameOver.jpg");
+    backg = new Sprite("Resources/GameCompleted.jpg");
 }
 
 // ------------------------------------------------------------------------------
 
-void GameOver::Finalize()
+void GameCompleted::Finalize()
 {
     delete backg;
 }
 
 // ------------------------------------------------------------------------------
 
-void GameOver::Update()
+void GameCompleted::Update()
 {
     // sai do jogo com a tecla ESC
     if (window->KeyPress(VK_ESCAPE))
@@ -46,7 +46,7 @@ void GameOver::Update()
 
 // ------------------------------------------------------------------------------
 
-void GameOver::Draw()
+void GameCompleted::Draw()
 {
     backg->Draw(window->CenterX(), window->CenterY(), Layer::BACK);
 }

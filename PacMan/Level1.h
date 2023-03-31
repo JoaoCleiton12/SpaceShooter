@@ -38,6 +38,9 @@ public:
     Timer roundTime4;
     float tempo4 = 15.0f;
 
+    Timer roundTimeGamer;
+    float tempoGame = 5.0f;         // tempo limite do game
+
 public:
     static Scene* scene;         // gerenciador de cena
     void Init();                    // inicializa jogo
