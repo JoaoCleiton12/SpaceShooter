@@ -35,11 +35,11 @@ void GameOver::Finalize()
 void GameOver::Update()
 {
     // sai do jogo com a tecla ESC
-    if (window->KeyPress(VK_ESCAPE))
+    if (window->KeyPress('N'))
         Engine::Next<Home>();
 
     // reinicia o game com ENTER
-    if (window->KeyPress(VK_RETURN))
+    if (window->KeyPress('Y'))
         Engine::Next<Level1>();
 
 }

@@ -223,8 +223,12 @@ void Level1::Update()
     }
 
 
-
-
+    //testar se os objetos colidem
+    /*
+    if (detectarColisao == true) {
+        Engine::Next<GameOver>();
+    }
+    */
     // habilita/desabilita bounding box
     if (window->KeyPress('B'))
     {
@@ -235,6 +239,9 @@ void Level1::Update()
     {
         // volta para a tela de abertura
         Engine::Next<Home>();
+    }
+    else if (window->KeyPress('P')) {
+        Engine::Next<GameOver>();
     }
     else if (roundTimeGamer.Elapsed(tempoGame)) {
         Sleep(1000);
